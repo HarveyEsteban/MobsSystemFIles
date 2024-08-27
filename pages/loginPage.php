@@ -17,7 +17,15 @@
         }
         else
         {
-            echo $checkuser;
+            $agentPos = checkAccess($checkuser);
+            if($agentPos == "Manager")
+            {
+                echo "Welcome Manager";
+            }
+            else
+            {
+                echo "Welcome Agent";
+            }
         }
 
     }
