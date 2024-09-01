@@ -10,6 +10,7 @@
         $inputPass = $_POST['mobsPass'] ?? "";
 
         $checkuser = checkLogin($inputID, $inputPass);
+        $obj = json_decode($checkuser);
 
         if($checkuser == false)
         {
@@ -17,15 +18,9 @@
         }
         else
         {
-            $agentPos = checkAccess($checkuser);
-            if($agentPos == "Manager")
-            {
-                echo "Welcome Manager";
-            }
-            else
-            {
-                echo "Welcome Agent";
-            }
+            $agent_name = $obj->{'name'};
+            $agent_pos = $obj->{'position'};
+            $agent_id = $obj ->{'mobs_id'};
         }
 
     }

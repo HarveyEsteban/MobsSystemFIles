@@ -9,8 +9,7 @@
     {
         // Check if there are any account linked to the Credential typed by the user
         global $conn;
-        
-
+    
         $sql = "SELECT * FROM users WHERE mobs_id = :id AND mobs_password = :pass AND isActive = '1'";
         $stmt = $conn->prepare($sql);
         $stmt -> bindParam(':id', $id, PDO:: PARAM_STR);
@@ -20,8 +19,21 @@
         if($stmt -> rowCount() > 0)
         {
             $row = $stmt -> fetch(PDO::FETCH_ASSOC);
-            $user_id = $row['mobs_id'];            
-            return $user_id;
+            $user_id = $row['mobs_id'];          
+            $user_possition = $row['mobs_position'];  
+            $user_agent_name = $row['mobs_name'];
+
+            $mobsAgent_info = array(
+                'mobs_id' => $user_id,
+                'name' => $user_agent_name, 
+                'position' => $user_possition
+            
+            );
+            return json_encode($mobsAgent_info);
+
+            // return $user_id;
+
+
         }
         else{
             return false;
@@ -29,4 +41,5 @@
 
         
     }
+
 

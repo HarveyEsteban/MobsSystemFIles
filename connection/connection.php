@@ -9,7 +9,7 @@ function connection(){
 
     try{
 
-        $db = new PDO("mysql:host=localhost;dbname=mobsdb", $user, $passPCOffice);
+        $db = new PDO("mysql:host=localhost;dbname=mobsdb", $user, $pasPCHome);
         $db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         return $db;
