@@ -3,6 +3,7 @@
     include_once '../connection/connection.php';
     include_once '../validation/userValidation.php';
     $conn = connection();
+    session_start();
 
 
 
@@ -24,6 +25,25 @@
             $agent_name = $obj->{'name'};
             $agent_pos = $obj->{'position'};
             $agent_id = $obj ->{'mobs_id'};
+
+            $_SESSION["agent_id"] = $agent_id;
+
+
+            if($agent_pos == "Admin")
+            {
+                header("Location: ./adminPage.php");
+
+            }
+            elseif($agent_pos == "Agent"){
+                header("Location: ./agentPage.php");
+            }
+            elseif($agent_pos == "Manager")
+            {
+                header("Location: ./manager.php");
+            }
+            else{
+                echo "error 404";
+            }
         }
 
     }
